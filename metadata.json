@@ -1,0 +1,6 @@
+{
+  "name": "PodCraft",
+  "description": "Agentic AI-powered podcast planning assistant for professional episode outlines, research, and question generation.",
+  "requestFramePermissions": ["microphone", "notifications"],
+  "majorCapabilities": []
+}

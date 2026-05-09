@@ -1,0 +1,78 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile information",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email"]
+    },
+    "PodcastProfile": {
+      "title": "Podcast Profile",
+      "description": "Main workspace for a podcast",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "name": { "type": "string" },
+        "niche": { "type": "string" },
+        "description": { "type": "string" },
+        "audience": { "type": "string" },
+        "coverImage": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "name"]
+    },
+    "Episode": {
+      "title": "Episode",
+      "description": "Podcast episode planning data",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "niche": { "type": "string" },
+        "guestName": { "type": "string" },
+        "guestBio": { "type": "string" },
+        "goal": { "type": "string", "enum": ["Educational", "Entertainment", "Promotional"] },
+        "tone": { "type": "string" },
+        "length": { "type": "string" },
+        "format": { "type": "string" },
+        "status": { "type": "string", "enum": ["draft", "completed"] },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" },
+        "data": {
+          "type": "object",
+          "properties": {
+            "topics": { "type": "array", "items": { "type": "object" } },
+            "questions": { "type": "array", "items": { "type": "object" } },
+            "hooks": { "type": "array", "items": { "type": "string" } },
+            "outline": { "type": "string" },
+            "timestamps": { "type": "array", "items": { "type": "object" } }
+          }
+        }
+      },
+      "required": ["userId", "niche", "goal"]
+    }
+  },
+  "firestore": {
+    "users": {
+      "schema": "User",
+      "description": "Collection of user profiles"
+    },
+    "profiles": {
+      "schema": "PodcastProfile",
+      "description": "Podcast workspace global profiles"
+    },
+    "episodes": {
+      "schema": "Episode",
+      "description": "Collection of podcast episode plans"
+    }
+  }
+}
